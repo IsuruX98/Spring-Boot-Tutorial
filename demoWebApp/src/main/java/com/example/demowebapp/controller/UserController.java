@@ -1,11 +1,17 @@
 package com.example.demowebapp.controller;
 
+import com.example.demowebapp.dto.UserDTO;
+import com.example.demowebapp.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController // making this call a rest api controller
 @RequestMapping(value = "api/v1/user") // mapping the req to the class
 @CrossOrigin
 public class UserController {
+
+  @Autowired
+  private UserService userService;
 
   @GetMapping("/getUser") // making the get req
   public String getUser() {
@@ -14,9 +20,9 @@ public class UserController {
   }
 
   @PostMapping("/saveUser")
-  public String saveUser() {
+  public UserDTO saveUser(@RequestBody UserDTO userDTO) {
 
-    return "Save user";
+   return userService.saveUser(userDTO);
   }
 
   @PutMapping("/updateUser")
