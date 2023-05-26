@@ -2,4 +2,5 @@
 
 This Git repo is dedicated to providing a comprehensive learning resource for mastering Spring Boot, a powerful Java framework for building web applications. Dive into our beginner-friendly code samples and in-depth tutorials to discover the inner workings of Spring Boot and unleash your potential in modern Java web development.
 
-![evka5q2xfpm7vbhka5ef](https://github.com/IsuruX98/Spring-Boot-Tutorial/assets/104721314/1f13d328-9504-485b-8830-225c7867570c)
+![1_-uckV8DOh3l0bCvqZ73zYg](https://github.com/IsuruX98/Spring-Boot-Tutorial/assets/104721314/2ded6884-3b12-4e99-9efe-c38a27515ac3)
+
