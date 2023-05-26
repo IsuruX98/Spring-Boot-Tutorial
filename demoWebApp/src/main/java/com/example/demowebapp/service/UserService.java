@@ -39,4 +39,11 @@ public class UserService {
     return true;
   }
 
+  //get user by id
+  //select * from user where id=1
+  public UserDTO getUserById(String userId){
+    User user = userRepo.getUserById(userId);
+    return modelMapper.map(user,UserDTO.class);
+  }
+
 }
