@@ -107,4 +107,59 @@ public class EmployeeController {
       return new ResponseEntity(responceDTO, HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
+
+  @GetMapping(value = "/getEmployee/{id}")
+  public ResponseEntity getEmployee(@PathVariable int id) {
+    try {
+
+      EmployeeDTO employeeDTO = employeeService.searchEmployee(id);
+
+      if (employeeDTO != null) {
+        responceDTO.setCode(VarList.RSP_SUCCESS);
+        responceDTO.setMessage("Success");
+        responceDTO.setObject(employeeDTO);
+
+        return new ResponseEntity(responceDTO, HttpStatus.ACCEPTED);
+      } else {
+        responceDTO.setCode(VarList.RSP_NO_DATA_FOUND);
+        responceDTO.setMessage("no employee for this id");
+        responceDTO.setObject(null);
+
+        return new ResponseEntity(responceDTO, HttpStatus.BAD_REQUEST);
+      }
+
+    } catch (Exception ex) {
+      responceDTO.setCode(VarList.RSP_ERROR);
+      responceDTO.setMessage(ex.getMessage());
+      responceDTO.setObject(null);
+
+      return new ResponseEntity(responceDTO, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @DeleteMapping(value = "deleteEmployee/{id}")
+  public ResponseEntity deleteEmployee(@PathVariable int id) {
+    try {
+      String res = employeeService.deleteEmployee(id);
+      if (res.equals("00")) {
+        responceDTO.setCode(VarList.RSP_SUCCESS);
+        responceDTO.setMessage("Success");
+        responceDTO.setObject(null);
+
+        return new ResponseEntity(responceDTO, HttpStatus.ACCEPTED);
+      } else {
+        responceDTO.setCode(VarList.RSP_NO_DATA_FOUND);
+        responceDTO.setMessage("no employee for this id to delete");
+        responceDTO.setObject(null);
+
+        return new ResponseEntity(responceDTO, HttpStatus.BAD_REQUEST);
+      }
+    } catch (Exception ex) {
+      responceDTO.setCode(VarList.RSP_ERROR);
+      responceDTO.setMessage(ex.getMessage());
+      responceDTO.setObject(null);
+
+      return new ResponseEntity(responceDTO, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
 }
