@@ -6,8 +6,12 @@ import com.example.employeemanagementsystem.repo.EmployeeRepo;
 import com.example.employeemanagementsystem.util.VarList;
 import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @Transactional
@@ -33,5 +37,10 @@ public class EmployeeService {
     } else {
       return VarList.RSP_NO_DATA_FOUND;
     }
+  }
+
+  public List<EmployeeDTO> getAllEmployees() {
+    List<Employee> employees = employeeRepo.findAll();
+    return modelMapper.map(employees, new TypeToken<ArrayList<EmployeeDTO>>() {}.getType());
   }
 }

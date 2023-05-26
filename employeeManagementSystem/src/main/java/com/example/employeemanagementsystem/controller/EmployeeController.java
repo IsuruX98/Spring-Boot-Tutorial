@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value = "api/v1/employee")
 public class EmployeeController {
@@ -75,6 +77,27 @@ public class EmployeeController {
 
         return new ResponseEntity(responceDTO, HttpStatus.BAD_REQUEST);
       }
+
+    } catch (Exception ex) {
+      responceDTO.setCode(VarList.RSP_ERROR);
+      responceDTO.setMessage(ex.getMessage());
+      responceDTO.setObject(null);
+
+      return new ResponseEntity(responceDTO, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @GetMapping(value = "/getAllEmployees")
+  public ResponseEntity getAllEmployees() {
+    try {
+
+      List<EmployeeDTO> employeeDTOList = employeeService.getAllEmployees();
+
+      responceDTO.setCode(VarList.RSP_SUCCESS);
+      responceDTO.setMessage("Success");
+      responceDTO.setObject(employeeDTOList);
+
+      return new ResponseEntity(responceDTO, HttpStatus.ACCEPTED);
 
     } catch (Exception ex) {
       responceDTO.setCode(VarList.RSP_ERROR);
