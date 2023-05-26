@@ -5,24 +5,25 @@ import com.example.demowebapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController // making this call a rest api controller
 @RequestMapping(value = "api/v1/user") // mapping the req to the class
 @CrossOrigin
 public class UserController {
 
-  @Autowired
-  private UserService userService;
+  @Autowired private UserService userService;
 
-  @GetMapping("/getUser") // making the get req
-  public String getUser() {
+  @GetMapping("/getUsers") // making the get req
+  public List<UserDTO> getUser() {
 
-    return "Get user";
+    return userService.gelAllUsers();
   }
 
   @PostMapping("/saveUser")
   public UserDTO saveUser(@RequestBody UserDTO userDTO) {
 
-   return userService.saveUser(userDTO);
+    return userService.saveUser(userDTO);
   }
 
   @PutMapping("/updateUser")

@@ -11,6 +11,8 @@ public class DemoWebAppApplication {
     public static void main(String[] args) {
         SpringApplication.run(DemoWebAppApplication.class, args);
     }
+
+    //adding the model mapper to map between classes
     @Bean
     public ModelMapper modelMapper(){
         return new ModelMapper();
